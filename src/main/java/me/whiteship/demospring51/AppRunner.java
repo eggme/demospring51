@@ -4,26 +4,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import java.util.Arrays;
 
 @Component
 public class AppRunner implements ApplicationRunner {
 
     @Autowired
-    ApplicationContext resourceLoader;
+    Validator validator;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println(resourceLoader.getClass());
+        System.out.println(validator.getClass());
+        Event event = new Event();
+        event.setLimit(-1);
+        event.setEmail("asdasdsad");
+        Errors errors = new BeanPropertyBindingResult(event, "event");
+        // BeanPropertyBindingResult 스프링 MVC가 자동으로 생성해서 리턴해줌
+        validator.validate(event, errors);
 
-        Resource resource = resourceLoader.getResource(" test.txt");
-        System.out.println(resource.getClass());
+        System.out.println(errors.hasErrors());
 
-        System.out.println(resource.exists());
-        System.out.println(resource.getFilename());
-        System.out.println(resource.getDescription());
-
+        errors.getAllErrors().forEach(e -> {
+            System.out.println("=========== error code ============");
+            Arrays.stream(e.getCodes()).forEach(System.out::println);
+            System.out.println(e.getDefaultMessage());
+        });
     }
 }
