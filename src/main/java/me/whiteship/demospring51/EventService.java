@@ -1,11 +1,14 @@
 package me.whiteship.demospring51;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
-public interface EventService {
-    void createEvent();
+@Service
+public class EventService {
 
-    void publishEvent();
-
-    void deleteEvent();
+    @NonNull
+    public String createEvent(@NonNull String name){
+        return null;
+        //return "hello " + name;
+    }
 }
