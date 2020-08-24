@@ -18,7 +18,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import java.util.function.Supplier;
 
 @SpringBootApplication
-@EnableAsync
 public class Demospring51Application {
 
     public static void main(String[] args) {
