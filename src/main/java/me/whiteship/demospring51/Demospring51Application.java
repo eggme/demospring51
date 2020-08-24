@@ -16,12 +16,7 @@ import java.util.function.Supplier;
 public class Demospring51Application {
 
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(Demospring51Application.class);
-        app.addInitializers((ApplicationContextInitializer<GenericApplicationContext>) cxt -> {
-            cxt.registerBean(MyService.class);
-            cxt.registerBean(ApplicationRunner.class, ()  -> args1 -> System.out.println("Functional Bean Definition"));
-        });
-        app.run(args);
+        SpringApplication.run(Demospring51Application.class, args);
     }
 
 }
