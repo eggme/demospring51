@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class EventContoller {
+public class EventController {
 
     @GetMapping("/event/{event}")
     public String getEvent(@PathVariable Event event){

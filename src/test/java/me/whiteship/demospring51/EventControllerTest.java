@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@WebMvcTest({EventFomatter.class, EventController.class})
 public class EventControllerTest {
 
     @Autowired
