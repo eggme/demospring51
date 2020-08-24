@@ -13,24 +13,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.util.function.Supplier;
 
 @SpringBootApplication
-@PropertySource("classpath:app.properties")
+@EnableAsync
 public class Demospring51Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Demospring51Application.class, args);
     }
 
-    @Bean
-    public MessageSource messageSource(){
-       ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-       messageSource.setBasename("classpath:/messages");
-       messageSource.setDefaultEncoding("UTF-8");
-       messageSource.setCacheSeconds(3);
-       return messageSource;
-
-    }
 }
